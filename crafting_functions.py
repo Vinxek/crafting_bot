@@ -84,16 +84,6 @@ def inputEnter(text):
     time.sleep(0.5)
     pyautogui.press('enter')
 
-def openClose():
-        inputEnter("")
-        time.sleep(0.2)
-        inputEnter("/clearlog")
-        time.sleep(0.5)
-        pyautogui.press('esc')
-        time.sleep(4)
-        pyautogui.press('esc')
-        time.sleep(0.5)
-
 def hqMats (search):
     des = 26
     mats = 0
