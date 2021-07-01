@@ -25,19 +25,18 @@ def foodCheck():
         if pyautogui.locateOnScreen('craftinglog.png', confidence = 0.6) != None:
             pyautogui.hotkey('ctrl','n')
             time.sleep(3)
-        pyautogui.hotkey('ctrl','1', interval=0.1)
+        pyautogui.hotkey('ctrl','1', interval=0.2)
         time.sleep(1)
 
 def locateclickL(image):
-    if pyautogui.locateOnScreen(image, confidence=0.8) != None:
-        posB = pyautogui.locateOnScreen(image, confidence=0.8)
-        pyautogui.moveTo(posB)
-        posC = str(pyautogui.position())
-        posA = re.findall(r'\d+', posC)
-        posInt1 = map(int, posA)
-        posInt2 = list(posInt1)
-        craftingMacroL(posInt2[0], posInt2[1])
-        time.sleep(0.7)
+    conf=0
+    while pyautogui.locateOnScreen(image, confidence=0.8) != None and conf<=0.4:
+        if conf>=0.4:
+            pass
+        else:
+            pos=pyautogui.locateCenterOnScreen(image, confidence=1-conf)
+            craftingMacroL(pos[0], pos[1])
+            time.sleep(0.7)
 
 def locateclickLAjsutable(image,x,y):
     if pyautogui.locateOnScreen(image, confidence=0.8) != None:
@@ -83,6 +82,16 @@ def inputEnter(text):
     pyautogui.write(text)
     time.sleep(0.5)
     pyautogui.press('enter')
+
+def openClose():
+        inputEnter("")
+        time.sleep(0.2)
+        inputEnter("/clearlog")
+        time.sleep(0.5)
+        pyautogui.press('esc')
+        time.sleep(4)
+        pyautogui.press('esc')
+        time.sleep(0.5)
 
 def hqMats (search):
     des = 26
